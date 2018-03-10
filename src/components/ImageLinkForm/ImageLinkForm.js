@@ -3,10 +3,10 @@ import 'tachyons';
 import './ImageLinkForm.css';
 
 class ImageLinkForm extends Component {
-    
+
     render() {
 
-        const { onInputChangeFunction, onButtonSubmitFunction } = this.props;
+        const { onInputChange, onButtonSubmit } = this.props;
 
         return (
             <div>
@@ -16,9 +16,9 @@ class ImageLinkForm extends Component {
                 <div className='center'>
                     <div className="form center pa4 br3 shadow-4 inputForm">
                         <input className='f4 pa2 w-70 center br1' type="text"
-                        onChange={onInputChangeFunction}
-                        onClick={onButtonSubmitFunction} />
-                        <button className='w-30 grow f4 link ph3 pv2 dib white bg-light-purple br1'>Detect</button>
+                            onChange={onInputChange} />
+                        <button className='w-30 grow f4 link ph3 pv2 dib white bg-light-purple br1'
+                            onClick={onButtonSubmit}>Detect</button>
                     </div>
                 </div>
             </div>
