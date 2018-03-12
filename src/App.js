@@ -30,27 +30,56 @@ class App extends Component {
     super();
     this.state = {
       input: '',
-      imageUrl: ''
+      imageUrl: '',
+      box: {}
     }
   }
 
-  onInputChange = (event) => {
-    this.setState({input: event.target.value})
+  preFormCalculateFaceBox = (data) => {
+    const boundingBoxes = data.outputs[0].data.regions;
+    const inputImage = document.getElementById('inputImage');
+    const width = Number(inputImage.width);
+    const height = Number(inputImage.height);
+
+    let thisFaceBox = [];
+
+    for (let face = 0; face < boundingBoxes.length; face++) {
+      let thisFace = (boundingBoxes[face].region_info.bounding_box)
+      thisFaceBox.push(this.calculateFaceBox(thisFace, width, height));
+    }
+    this.displayFaceBox(thisFaceBox);
+  }
+
+  displayFaceBox = (box) => {
+    this.setState({ box: box });
+  }
+
+  calculateFaceBox = (thisFace, width, height) => {
+    return {
+      leftCol: thisFace.left_col * width,
+      topRow: thisFace.top_row * height,
+      bottomRow: height - (thisFace.bottom_row * height),
+      rightCol: width - (thisFace.right_col * width)
+    }
   }
 
   onButtonSubmit = () => {
-    this.setState({imageUrl: this.state.input})
+    this.setState({ imageUrl: this.state.input })
     app.models.predict(
-      Clarifai.COLOR_MODEL,
+      Clarifai.FACE_DETECT_MODEL,
       this.state.input)
       .then(
-        function (response) {
-          console.log(response);
+        (response) => {
+          this.preFormCalculateFaceBox(response);
         },
-        function (err) {
-          // there was an error
+        (err) => {
+          console.log(err);
         }
       );
+  }
+
+  onInputChange = (event) => {
+    this.setState({ input: event.target.value })
   }
 
   render() {
@@ -63,7 +92,7 @@ class App extends Component {
         <Logo />
         <Rank />
         <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
-        <FaceRecognition imageUrl={this.state.imageUrl} />
+        <FaceRecognition imageUrl={this.state.imageUrl} box={this.state.box} />
       </div>
     );
   }
