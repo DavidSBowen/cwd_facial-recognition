@@ -8,7 +8,7 @@ class SignIn extends Component {
             <article className="mw6 center bg-white-30 br3 pa3 pa4-ns mv1 ba b--black-10 shadow-4">
                 <div className="tc">
                     <main className="pa4 black-80">
-                        <form className="measure">
+                        <div className="measure">
                             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
                                 <legend className="f1 fw6 ph0 mh0">Sign In</legend>
                                 <div className="mt3">
@@ -29,10 +29,10 @@ class SignIn extends Component {
                                     value="Sign in"></input>
                             </div>
                             <div className="lh-copy mt3">
-                                <a onClick={()=>onRouteChange('register')} href="#0" className="f6 link dim black db">Sign up</a>
+                                <a onClick={()=>onRouteChange('register')} href="#0" className="f6 link dim black db pointer">Sign up</a>
                                 <a href="#0" className="f6 link dim black db">Forgot your password?</a>
                             </div>
-                        </form>
+                        </div>
                     </main>
                 </div>
             </article>

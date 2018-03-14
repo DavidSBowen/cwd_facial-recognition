@@ -20,7 +20,7 @@ const particlesOptions = {
       value: 30,
       density: {
         enable: true,
-        value_area: 200
+        value_area: 1000
       }
     }
   }
@@ -34,7 +34,8 @@ class App extends Component {
       input: '',
       imageUrl: '',
       box: {},
-      route: 'signin'
+      route: 'signin',
+      isSignedIn: false
     }
   }
 
@@ -82,6 +83,11 @@ class App extends Component {
   }
 
   onRouteChange = (route) => {
+    if (route === 'signout' || route === 'signin') {
+      this.setState({ isSignedIn: false });
+    } else if (route === 'home') {
+      this.setState({ isSignedIn: true });
+    }
     this.setState({ route: route });
   }
 
@@ -90,24 +96,25 @@ class App extends Component {
   }
 
   render() {
+    const { isSignedIn, imageUrl, box, route } = this.state;
     return (
       <div className="App">
         <Particles className='particles'
           params={particlesOptions}
         />
-        <Navigation onRouteChange={this.onRouteChange} />
-        {this.state.route === 'home'
+        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
+        {route === 'home'
           ?
           <div>
             <Logo />
             <Rank />
             <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
-            <FaceRecognition imageUrl={this.state.imageUrl} box={this.state.box} />
+            <FaceRecognition imageUrl={imageUrl} box={box} />
           </div>
           : (
-            this.state.route === 'signin' ?
+            route === 'signin' ?
               <SignIn onRouteChange={this.onRouteChange} />
-              :
+              : // only remaining value here is route === 'register'
               <Register onRouteChange={this.onRouteChange} />
           )
         }

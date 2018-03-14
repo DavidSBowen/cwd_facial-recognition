@@ -8,7 +8,7 @@ class Register extends Component {
             <article className="mw6 center bg-white-30 br3 pa3 pa4-ns mv1 ba b--black-10 shadow-4">
                 <div className="tc">
                     <main className="pa4 black-80">
-                        <form className="measure">
+                        <div className="measure">
                             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
                                 <legend className="f1 fw6 ph0 mh0">Register</legend>
                                 <div className="mt3">
@@ -34,7 +34,7 @@ class Register extends Component {
                             <div className="lh-copy mt3">
                                 <p onClick={() => onRouteChange('register')} className="f6 link dim black db">Forgot your password?</p>
                             </div>
-                        </form>
+                        </div>
                     </main>
                 </div>
             </article>
