@@ -88,7 +88,6 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input, box: {} })
-    console.log(this.state.input);
     app.models.predict(
       Clarifai.FACE_DETECT_MODEL,
       this.state.input)
@@ -134,6 +133,7 @@ class App extends Component {
 
   render() {
     const { isSignedIn, imageUrl, box, route } = this.state;
+
     return (
       <div className="App">
         <Particles className='particles'
