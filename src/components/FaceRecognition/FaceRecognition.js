@@ -20,7 +20,7 @@ class FaceRecognition extends Component {
         return (
             <div className="center ma">
                 <div className='absolute mt2'>
-                    <img id='inputImage' src={imageUrl} alt="Stuff" className="mainPicture" />
+                    <img id='inputImage' src={imageUrl} alt="" className="mainPicture" />
                     <div id="placeBoxesId">
                         <div>
                             {this.placeBoxes(box)}
