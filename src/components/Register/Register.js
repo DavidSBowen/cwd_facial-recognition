@@ -14,7 +14,7 @@ class Register extends Component {
  
     onSubmitSignIn = (event) => {
 
-        fetch('http://localhost:3000/register',
+        fetch('https://infinite-hamlet-44956.herokuapp.com/',
             {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
@@ -33,6 +33,9 @@ class Register extends Component {
                     this.props.loadUser(user);
                     this.props.onRouteChange('home');
                 }
+            })
+            .catch(err => {
+                console.log('error:', err);
             })
     }
 
