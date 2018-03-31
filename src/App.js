@@ -72,7 +72,7 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input, box: {} })
-    fetch('https://infinite-hamlet-44956.herokuapp.com/', {
+    fetch('https://infinite-hamlet-44956.herokuapp.com/imageurl', {
       method: "post",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -83,7 +83,7 @@ class App extends Component {
       .then((response) => {
         this.preFormCalculateFaceBox(response);
 
-        fetch('https://infinite-hamlet-44956.herokuapp.com/', {
+        fetch('https://infinite-hamlet-44956.herokuapp.com/image', {
           method: "put",
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
