@@ -11,10 +11,10 @@ class Register extends Component {
             name: ''
         }
     }
- 
-    onSubmitSignIn = (event) => {
 
-        fetch('https://infinite-hamlet-44956.herokuapp.com/register',
+    onSubmitSignIn = (apiUrlBasedOnEnvironment) => {
+
+        fetch(apiUrlBasedOnEnvironment + 'register',
             {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
@@ -51,7 +51,7 @@ class Register extends Component {
     }
 
     render() {
-        const { onRouteChange } = this.props;
+        const { onRouteChange, apiUrlBasedOnEnvironment } = this.props;
         return (
             <article className="mw6 center bg-white-30 br3 pa3 pa4-ns mv1 ba b--black-10 shadow-4">
                 <div className="tc">
@@ -62,33 +62,33 @@ class Register extends Component {
                                 <div className="mt3">
                                     <label className="db fw6 lh-copy f6" htmlFor="name">Name</label>
                                     <input
-                                    className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
-                                    type="text"
-                                    name="name"
-                                    id="name"
-                                    onChange={this.onNameChange}
+                                        className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                                        type="text"
+                                        name="name"
+                                        id="name"
+                                        onChange={this.onNameChange}
                                     ></input>
                                 </div>
                                 <div className="mt3">
                                     <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
-                                    <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
-                                    type="email" 
-                                    name="email-address" 
-                                    id="email-address"
-                                    onChange={this.onEmailChange}></input>
+                                    <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                                        type="email"
+                                        name="email-address"
+                                        id="email-address"
+                                        onChange={this.onEmailChange}></input>
                                 </div>
                                 <div className="mv3">
                                     <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
-                                    <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
-                                    type="password" 
-                                    name="password" 
-                                    id="password"
-                                    onChange={this.onPasswordChange}></input>
+                                    <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                                        type="password"
+                                        name="password"
+                                        id="password"
+                                        onChange={this.onPasswordChange}></input>
                                 </div>
                             </fieldset>
                             <div className="">
                                 <input
-                                    onClick={this.onSubmitSignIn}
+                                    onClick={() => this.onSubmitSignIn(apiUrlBasedOnEnvironment)}
                                     className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                                     type="submit"
                                     value="Submit"></input>

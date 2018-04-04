@@ -19,9 +19,9 @@ class SignIn extends Component {
         this.setState({ signInPassword: event.target.value });
     }
 
-    onSubmitSignIn = (event) => {
-
-        fetch('https://infinite-hamlet-44956.herokuapp.com/signin',
+    onSubmitSignIn = (apiUrlBasedOnEnvironment) => {
+        console.log(apiUrlBasedOnEnvironment);
+        fetch(apiUrlBasedOnEnvironment + 'signin',
             {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
@@ -40,12 +40,13 @@ class SignIn extends Component {
                 }
             })
             .catch(err => {
-                console.log('error!:', err);
+                console.log('error!!:', err);
             })
     }
 
     render() {
-        const { onRouteChange } = this.props;
+        const { onRouteChange, apiUrlBasedOnEnvironment } = this.props;
+        console.log(apiUrlBasedOnEnvironment);
         return (
             <article className="mw6 center bg-white-30 br3 pa3 pa4-ns mv1 ba b--black-10 shadow-4">
                 <div className="tc">
@@ -79,7 +80,7 @@ class SignIn extends Component {
                             </fieldset>
                             <div className="">
                                 <input
-                                    onClick={() => this.onSubmitSignIn()}
+                                    onClick={() => this.onSubmitSignIn(apiUrlBasedOnEnvironment)}
                                     className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                                     type="submit"
                                     value="Sign in">

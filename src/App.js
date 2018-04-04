@@ -8,6 +8,14 @@ import Rank from './components/Rank/Rank';
 import Register from './components/Register/Register';
 import SignIn from './components/SignIn/SignIn';
 
+// 
+// //
+const environment = 'heroku';
+// //
+// 
+
+
+
 const initialState = {
   input: '',
   imageUrl: '',
@@ -20,7 +28,8 @@ const initialState = {
     email: '',
     entries: 0,
     joined: new Date()
-  }
+  },
+  environment: environment
 }
 
 class App extends Component {
@@ -28,6 +37,15 @@ class App extends Component {
   constructor() {
     super();
     this.state = initialState
+  }
+
+  componentDidMount() {
+    if (environment === 'local') {
+      this.setState({ apiUrlBasedOnEnvironment: 'http://127.0.0.1:3000/' });
+    } else if (environment === 'heroku') {
+      this.setState({ apiUrlBasedOnEnvironment: 'https://infinite-hamlet-44956.herokuapp.com/' });
+
+    }
   }
 
   loadUser = (data) => {
@@ -72,7 +90,7 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input, box: {} })
-    fetch('https://infinite-hamlet-44956.herokuapp.com/imageurl', {
+    fetch(this.state.apiUrlBasedOnEnvironment + 'imageurl', {
       method: "post",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -83,7 +101,7 @@ class App extends Component {
       .then((response) => {
         this.preFormCalculateFaceBox(response);
 
-        fetch('https://infinite-hamlet-44956.herokuapp.com/image', {
+        fetch(this.state.apiUrlBasedOnEnvironment + 'image', {
           method: "put",
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -120,8 +138,8 @@ class App extends Component {
   }
 
   render() {
-    const { isSignedIn, imageUrl, box, route } = this.state;
-
+    const { isSignedIn, imageUrl, box, route, apiUrlBasedOnEnvironment } = this.state;
+    console.log(this.state.apiUrlBasedOnEnvironment);
     return (
       <div className="App">
         {/* <Particles className='particles'
@@ -138,9 +156,9 @@ class App extends Component {
           </div>
           : (
             route === 'signin' ?
-              <SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
+              <SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser} apiUrlBasedOnEnvironment={apiUrlBasedOnEnvironment} />
               : // only remaining value here is route === 'register'
-              <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
+              <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser} apiUrlBasedOnEnvironment={apiUrlBasedOnEnvironment} />
           )
         }
       </div>
