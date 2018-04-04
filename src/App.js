@@ -139,7 +139,6 @@ class App extends Component {
 
   render() {
     const { isSignedIn, imageUrl, box, route, apiUrlBasedOnEnvironment } = this.state;
-    console.log(this.state.apiUrlBasedOnEnvironment);
     return (
       <div className="App">
         {/* <Particles className='particles'

@@ -20,7 +20,6 @@ class SignIn extends Component {
     }
 
     onSubmitSignIn = (apiUrlBasedOnEnvironment) => {
-        console.log(apiUrlBasedOnEnvironment);
         fetch(apiUrlBasedOnEnvironment + 'signin',
             {
                 method: 'post',
@@ -46,7 +45,6 @@ class SignIn extends Component {
 
     render() {
         const { onRouteChange, apiUrlBasedOnEnvironment } = this.props;
-        console.log(apiUrlBasedOnEnvironment);
         return (
             <article className="mw6 center bg-white-30 br3 pa3 pa4-ns mv1 ba b--black-10 shadow-4">
                 <div className="tc">
