@@ -8,12 +8,8 @@ import Rank from './components/Rank/Rank';
 import Register from './components/Register/Register';
 import SignIn from './components/SignIn/SignIn';
 
-// 
-// //
 // Set this to either 'local' or 'heroku'
 const environment = 'heroku';
-// //
-// 
 
 
 
