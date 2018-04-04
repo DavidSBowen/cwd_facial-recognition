@@ -10,6 +10,7 @@ import SignIn from './components/SignIn/SignIn';
 
 // 
 // //
+// Set this to either 'local' or 'heroku'
 const environment = 'heroku';
 // //
 // 
