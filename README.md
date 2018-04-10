@@ -1,3 +1,9 @@
+App provides a basic front end interface allowing for secure registration and logging in to a web application hosted on Heroku.  Contacts a backend API and Database which are both also on Heroku.
+
+Logging in and Registration sends information securely using HTTPS and securely hashes and checks the password with bcrypt.  Plaintext passwords are never passed, stored, or used in any way.
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
