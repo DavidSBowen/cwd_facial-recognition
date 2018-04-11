@@ -51,6 +51,7 @@ class SignIn extends Component {
                     <main className="pa4 black-80">
                         <div className="measure">
                             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
+                                <div>test@test.com : 123 -- for testing</div>
                                 <legend className="f1 fw6 ph0 mh0">Sign In</legend>
                                 <div className="mt3">
                                     <label
